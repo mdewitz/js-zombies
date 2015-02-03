@@ -301,18 +301,40 @@ Player.prototype.eat = function(itemToEat){
  */
 Player.prototype.useItem = function(item){
   var pack = this.getPack();
-  if(item === undefined || item === null){
+  // if(item === undefined || item === null){
+  //   return false;
+  // }if(item instanceof Weapon === false || item instanceof Food === false){
+  //   return false;
+  // }
+  if(pack.indexOf(item)=== -1){
     return false;
-  }if(item instanceof Weapon === false || item instanceof Food === false){
-    return false;
-  }if(item instanceof Weapon === true && pack.indexOf(item)!== -1){
-     this.equip(item);
+  }else{
+    if(item instanceof Weapon){
+    this.equip(item);
      return true;
-  }else if(itemToEat instanceof Food === true || pack.indexOf(itemToEat)!== -1){
+  }if(item instanceof Food){
     this.eat(item);
+    // this.health = this.health + item.prototype(Food.energy);
     return true;
+    }
   }
 };
+
+//   var pack = this.getPack();
+//   if(item === undefined || item === null){
+//     return false;
+//   }if(item instanceof Weapon === false || item instanceof Food === false){
+//     return false;
+//   }if(item instanceof Weapon === true && pack.indexOf(item)!== -1){
+//      this.equip(item);
+//      return true;
+//   }else if(item instanceof Food === true || pack.indexOf(item!== -1)){
+//     this.eat(item);
+//     // this.health = this.health + item.prototype(Food.energy);
+//     return true;
+//   }
+// };
+
 
 // var pack = this.getPack();
 //   if(item === undefined || item === null){
@@ -351,14 +373,29 @@ Player.prototype.useItem = function(item){
  * @name equippedWith
  * @return {string/boolean}   Weapon name or false if nothing is equipped.
  */
+
 Player.prototype.equippedWith = function(){
- if(this.equipped === null || this.equipped === undefined || this.equipped === false) {
+  if(this.equipped === false) {
+  console.log("false: not equipped");
   return false;
- }else if(item instanceof Weapon === true){
-  this.equip = item;
-  console.log(this.name + " , " + "Weapon.name");
+ }else{
+  console.log(this.name + " , " + this.equipped.name);
+  return this.equipped.name;
  }
 };
+
+
+// Player.prototype.equippedWith = function(){
+//  if(this.equipped === null || this.equipped === undefined || this.equipped === false) {
+//   console.log("false: " + this.equip(Weapon.name));
+//   return false;
+//  }else if(item instanceof Weapon === true){
+//   this.equip = item;
+//   console.log(this.name + " , " + this.equip(item.name));
+//   return true;
+//  }
+// };
+
 
 /**
  * Class => Zombie(health, strength, speed)
